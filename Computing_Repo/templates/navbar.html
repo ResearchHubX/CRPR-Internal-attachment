@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Navigation Bar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .navbar-nav .nav-item .nav-link {
+            color: white;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #f8f9fa;
+        }
+        .profile-dropdown {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .profile-dropdown img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        .dropdown-menu a {
+            color: black !important;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%288, 8, 8, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">BrandName</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contacts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Recent Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Featured Researchers</a>
+            </li>
+        </ul>
+        <div class="dropdown">
+            <div class="profile-dropdown" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://via.placeholder.com/30" alt="User Image">
+                <span class="text-white">Username</span>
+                <i class="fas fa-caret-down text-white ml-2"></i>
+            </div>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="#">View Profile</a>
+                <a class="dropdown-item" href="#">Login</a>
+                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="#">Signup</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Optional: Add custom functionality here
+        $('.dropdown-menu a').on('click', function() {
+            alert('You clicked on ' + $(this).text());
+        });
+    });
+</script>
+
+</body>
+</html>

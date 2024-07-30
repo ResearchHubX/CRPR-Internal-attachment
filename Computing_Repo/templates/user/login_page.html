@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+<title>
+{% block title %}
+    login page
+{% endblock  %}
+</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Image column -->
+        <div class="col-lg-6">
+            <img src="{% static 'images/login-signup.jpg' %}" class="img-fluid w-100 h-100 mt-0" style="object-fit: cover;" alt="Sign Up Image">
+        </div>
+        <!-- Form column -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="p-3 custom-shadow">
+                <div class="card-body">
+                    <!-- Institution logo -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'images/jkuat logo.png' %}" alt="Institution Logo" style="max-width: 100px;">
+                    </div>
+                    <!-- Welcome back message -->
+                    <h4 class="text-center text-uppercase mb-3">Welcome Back!</h4>
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center mt-3">
+                            <!-- Prompt for users to fill the form to login -->
+                            <p class="text-success" style="font: 1em sans-serif; font-weight: bold;">Please fill the form to login</p>
+                        </div>
+                    </div>
+                    <!-- Login form -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form_errors form %}
+                        {% bootstrap_label "Email" %}
+                        {% bootstrap_field form.username show_label=False placeholder="Email" %}
+                        {% bootstrap_field form.password %}
+                        <button class="btn btn-warning btn-block">Sign In</button>
+                    </form>
+                    <!-- Additional options -->
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center mt-3">
+                            <p>Don't have an account? <a href="{% url 'sign_in' %}" class="btn btn-warning">Create Account</a></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center">
+                            <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset it here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

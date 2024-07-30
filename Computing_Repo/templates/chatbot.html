@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+    Projects
+{% endblock  %}
+{% block content %}
+
+ <!-- home.html -->
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="user_input">
+    <button type="submit">Submit</button>
+</form>
+{% if chatbot_response %}
+<div>
+    Chatbot Response: {{ chatbot_response }}
+</div>
+{% endif %}
+
+{% endblock  %}

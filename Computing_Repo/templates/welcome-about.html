@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicons -->
+ 
+
+  <!-- Google Fonts -->
+  
+
+  <!-- Vendor CSS Files -->
+ 
+  <link href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "assets/vendor/bootstrap-icons/bootstrap-icons.css" %}" rel="stylesheet">
+ 
+
+  <!-- Template Main CSS File -->
+  <link href="{% static "assets/css/style.css" %}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main id="main">
+        <header class="section-header" id="featured-service">
+            <h3 class="text-dark mt-2">Services</h3>
+          </header>
+
+        <!-- ======= Featured Services Section Section ======= -->
+        <section id="featured-services">
+          <div class="container">
+            <div class="row">
+    
+              <div class="col-lg-4 box">
+                <i class="bi bi-briefcase"></i>
+                <h4 class="title"><a href="">Computing Research Project repository</a></h4>
+                <p class="description">A centralized platform designed to catalog and showcase ongoing research projects within the Department of Computing</p>
+              </div>
+    
+              <div class="col-lg-4 box box-bg">
+                <i class="bi bi-card-checklist"></i>
+                <h4 class="title"><a href="">Research</a></h4>
+                <p class="description">Explore a wide range of research endeavors across various computing domains.Our repository is a reflection of the innovative and impactful research conducted by our faculty, researchers, and students.</p>
+              </div>
+    
+              <div class="col-lg-4 box">
+                <i class="bi bi-binoculars"></i>
+                <h4 class="title"><a href="">Projects</a></h4>
+                <p class="description">Showcase a diverse range of innovative and impactful research projects undertaken by our faculty, researchers, and students. Our projects span various domains within computing, reflecting the breadth and depth of expertise within our department.</p>
+              </div>
+    
+            </div>
+          </div>
+        </section><!-- End Featured Services Section -->
+    
+        <!-- ======= About Us Section ======= -->
+        <section id="about">
+          <div class="container" data-aos="fade-up">
+    
+            <header class="section-header">
+              <h3>About Us</h3>
+              <p>The CRPR is a comprehensive database that serves as a hub for information on research projects in artificial intelligence, cybersecurity, software engineering, data science, and more. Our platform facilitates easy access to project details, resources, outcomes, and collaborative opportunities.</p>
+            </header>
+    
+            <div class="row about-cols">
+    
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="about-col">
+                  <div class="img">
+                    <img src="{% static "assets/img/about-mission.jpg" %}" alt="" class="img-fluid">
+                    <div class="icon"><i class="bi bi-bar-chart"></i></div>
+                  </div>
+                  <h2 class="title"><a href="#">Our Mission</a></h2>
+                  <p>
+                    Our mission is to foster transparency, knowledge sharing, and interdisciplinary collaboration within the Department of Computing. We aim to support researchers, students, and stakeholders by providing a robust repository of information and resources.
+                  </p>
+                </div>
+              </div>
+    
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="about-col">
+                  <div class="img">
+                    <img src="{% static "assets/img/about-plan.jpg" %}" alt="" class="img-fluid">
+                    <div class="icon"><i class="bi bi-brightness-high"></i></div>
+                  </div>
+                  <h2 class="title"><a href="#">Our Plan</a></h2>
+                  <p>
+                    We plan to continuously update and expand our repository with the latest research projects and findings. Our goal is to include more domains and increase user engagement through interactive features and updated content.
+                  </p>
+                </div>
+              </div>
+    
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="about-col">
+                  <div class="img">
+                    <img src="{% static "assets/img/about-vision.jpg" %}" alt="" class="img-fluid">
+                    <div class="icon"><i class="bi bi-calendar4-week"></i></div>
+                  </div>
+                  <h2 class="title"><a href="#">Our Vision</a></h2>
+                  <p>
+                    Our vision is to become a leading resource for computing research, contributing to academic excellence and innovation. We strive to be a valuable asset for prospective students, funding agencies, and industry partners looking to engage with cutting-edge research.
+                  </p>
+                </div>
+              </div>
+    
+            </div>
+    
+          </div>
+        </section><!-- End About Us Section -->
+    </main>
+    
+</body>
+</html>

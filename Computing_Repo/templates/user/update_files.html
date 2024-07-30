@@ -1,0 +1,73 @@
+{% extends "profile/base.html" %}
+{% load static %}
+{% block content %}
+
+<form method="post" enctype="multipart/form-data" class="container mt-5">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- Display current files and their descriptions -->
+    {% if project.files.exists %}
+        <div class="mt-5">
+            <h2 class="mb-3 text-center">Current Files</h2>
+            <div class="alert alert-warning text-center" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="fw-bold text-danger" style="font-size: 18px;">
+                    Please check the checkbox for files you want to delete, then click on the Update button:
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">File Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Preview</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in project.files.all %}
+                            <tr>
+                                <td>{{ file.file.name }}</td>
+                                <td>{{ file.description }}</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="files_to_delete[]" value="{{ file.id }}" id="deleteFile{{ file.id }}">
+                                        <label class="form-check-label" for="deleteFile{{ file.id }}">
+                                            Delete
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{ file.file.url }}" target="_blank" class="btn btn-primary">Preview</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+    <!-- Add form fields for uploading new files -->
+    <div class="mt-5">
+        <h2 class="mb-3 text-center">Upload New Files</h2>
+        <div class="card p-4">
+            <div class="form-group mb-3">
+                <label for="new_files" class="form-label">Select Files</label>
+                <input type="file" class="form-control" id="new_files" name="new_files[]" multiple>
+                <small class="form-text text-muted">You can upload multiple files.</small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="new_descriptions" class="form-label">File Descriptions</label>
+                <input type="text" class="form-control" id="new_descriptions" name="new_descriptions[]" placeholder="Enter description for new files">
+                <small class="form-text text-muted">Provide a brief description for each file.</small>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-warning btn-lg">Update</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center mb-0">Subscribe to Premium Service</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <div class="text-center mt-4 mb-3">
+                            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png"
+                                alt="PayPal" class="img-fluid">
+                            <p class="text-muted mt-2">Your subscription amount will be securely processed via PayPal.</p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Subscribe Now</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    By subscribing, you agree to our <a href="{% url "billing" %}">Billing Policy</a>. Your subscription grants you access to premium services for 30 days.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

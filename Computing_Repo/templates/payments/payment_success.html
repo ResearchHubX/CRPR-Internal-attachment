@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center shadow-lg fade-in">
+                <div class="card-header bg-success text-white">
+                    <h2 class="card-title">Payment Successful</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Your subscription has been activated. Thank you for your purchase!</p>
+                    <p class="card-text">You can now enjoy our premium features and services for the next 30days.</p>
+                    <a href="{% url 'project_page' %}" class="btn btn-primary mt-3">View Projects</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

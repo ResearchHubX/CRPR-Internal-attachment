@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block title %}
+    Registration
+{% endblock %}
+{% block head %}
+ <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Image column -->
+        <div class="col-lg-6">
+            <img src="{% static 'images/login-signup.jpg' %}" class="img-fluid w-100 h-100 mt-0" style="object-fit: cover;" alt="Sign Up Image">
+        </div>
+
+        <!-- Form side -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            <div class="p-3 custom-shadow">
+                <div class="card-body">
+                    <!-- Institution logo -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'images/jkuat logo.png' %}" alt="Institution Logo" style="max-width: 100px;">
+                    </div>
+                    <!-- Welcome back message -->
+                    <h4 class="text-center text-uppercase mb-3">Welcome To Computing department projects Repository|🧑‍💻</h4>
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center mt-3">
+                            <!-- Prompt for users to fill the form to login -->
+                            <p class="text-success" style="font: 1em sans-serif; font-weight: bold;">Please fill the form to Join Us</p>
+                        </div>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-warning btn-block">Sign Up</button>
+                        <p class="text-center mt-3">
+                            Already have an account? <a href="{% url "login_page" %}"><b>Login</b></a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

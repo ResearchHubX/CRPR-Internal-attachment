@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: green;
+            margin-top: 2rem;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+        
+        .faq-question:hover {
+            background-color: #555;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem;
+            }
+        
+            .faq-question {
+                font-size: 1rem;
+            }
+        
+            .faq-answer {
+                padding: 0.75rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Computing Research Projects Repository (CRPR) FAQs</h1>
+    </header>
+    <main>
+        <section class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button class="faq-question">What is the Computing Research Projects Repository (CRPR)?</button>
+                <div class="faq-answer">
+                    <p>The Computing Research Projects Repository (CRPR) is a centralized platform designed to catalog and showcase ongoing research projects conducted within the Department of Computing. The repository serves as a comprehensive database of research endeavors spanning various computing domains, including artificial intelligence, cybersecurity, software engineering, data science, and more.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Who can access the CRPR?</button>
+                <div class="faq-answer">
+                    <p>CRPR provides researchers, students, and stakeholders with easy access to project information, resources, outcomes, and collaborations, fostering transparency, knowledge sharing, and interdisciplinary collaboration within the department.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can prospective students benefit from CRPR?</button>
+                <div class="faq-answer">
+                    <p>Prospective students can explore the diverse range of research projects within the department, understand current research trends, and identify potential mentors or research groups they might want to join.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What type of research projects are included in CRPR?</button>
+                <div class="faq-answer">
+                    <p>CRPR includes research projects from various computing domains such as artificial intelligence, cybersecurity, software engineering, data science, and more. Each project is detailed with information on its objectives, outcomes, and ongoing collaborations.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I contribute my research project to CRPR?</button>
+                <div class="faq-answer">
+                    <p>Researchers can contribute their projects to CRPR by submitting detailed information through the department's official submission process. This typically involves providing an overview of the project, its objectives, key outcomes, and any available resources or collaborations.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can industry partners engage with CRPR?</button>
+                <div class="faq-answer">
+                    <p>Industry partners can engage with CRPR by exploring the repository to identify potential collaboration opportunities, funding research projects, and connecting with researchers and students working on innovative solutions within their fields of interest.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How is the CRPR maintained and updated?</button>
+                <div class="faq-answer">
+                    <p>CRPR is maintained by a dedicated team within the Department of Computing who regularly update the repository with new projects, outcomes, and collaborations. They ensure the information remains current and accurately reflects ongoing research activities.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I search for specific projects in CRPR?</button>
+                <div class="faq-answer">
+                    <p>Yes, CRPR includes a search feature that allows users to search for specific projects by keywords, domains, or researchers. This makes it easy to find relevant projects and information quickly.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faqQuestions = document.querySelectorAll(".faq-question");
+        
+            faqQuestions.forEach(question => {
+                question.addEventListener("click", function() {
+                    const answer = this.nextElementSibling;
+                    if (answer.style.display === "block") {
+                        answer.style.display = "none";
+                    } else {
+                        document.querySelectorAll(".faq-answer").forEach(answer => answer.style.display = "none");
+                        answer.style.display = "block";
+                    }
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>

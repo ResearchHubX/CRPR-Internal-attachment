@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock  %}
+  <!--hero section-->
+  
+  <section class="hero-section">
+    <div class="overlay"></div>
+    <div class="container">
+      <h1 class="display-4 fw-bold fade-in" style="color: blue; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">Transform your ideas into groundbreaking research with CRPR.</h1>
+      <p class="lead fade-in text-light">Access a comprehensive platform to discover and collaborate on cutting-edge computing projects.</p>
+      <div class=" mt-4">
+        <a href="{% url 'project_page' %}" class="btn btn-warning btn-md mt-2 py-2">View Projects</a>
+        <a href="{% url 'create_project' %}" class="btn btn-success mt-2  py-2">Create Project</a>
+      </div>
+    </div>
+    <div class="hero-images">
+      <img src="{% static 'images/home/hero3.jpeg' %}" alt="Image 1" class="hero-image active">
+      <img src="{% static 'images/home/hero2.jpg' %}" alt="Image 2" class="hero-image">
+      <img src="{% static 'images/home/hero1.jpg' %}" alt="Image 3" class="hero-image">
+    </div>
+  </section>
+  
+  
+    <!--welcome and about us section-->
+      {% include "welcome-about.html" %}
+    
+      <!--featured projects-->
+      <div class="section featured-projects py-5 bg-success" id="recent_projects">
+        <div class="container">
+            <h3 class="text-center text-dark mb-4 section-title font-weight-bold">RECENT PROJECTS</h3>
+            <div class="row">
+                {% if recent_projects %}
+                    {% for project in recent_projects %}
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card h-100 shadow">
+                                <div class="card-body text-center">
+                                    <p class="card-title text-danger"><span class="text-muted">Title: </span>{{ project.title }}</p>
+                                    <p class="card-text"><span class="text-muted">Description: </span>{{ project.description }}</p>
+                                    <p class="card-date">{{ project.date_created|date:"F j, Y" }}</p>
+                                    <a href="{% url 'details_page' project.id %}" class="btn btn-primary btn-sm">View Details</a>
+                                </div>
+                                <div class="card-footer text-muted text-center" style="font-size: 15px;">
+                                    <img class="card-img-top rounded-circle mx-auto mt-2" style="width: 50px; height: 50px; object-fit: cover; " src="{% if project.creator.profile.avatar %}{{ project.creator.profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}" alt="User Avatar">
+                                    Created by {{ project.creator.get_full_name }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12">
+                        <p class="text-danger text-center">No recent projects available.</p>
+                    </div>
+                {% endif %}
+            </div>
+            {% if recent_projects %}
+                <div class="text-center mt-4">
+                    <a href="{% url 'project_page' %}" class="btn btn-warning btn-lg">View Other Projects</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+      <!--Featured researchers-->
+  
+    <div class="section featured-researchers" id="research" style="background-image: url('{% static "images/OIP.jpeg" %}'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 60px 0; color: #fff;">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Researchers</h2>
+            <div id="carouselResearchers" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for researcher in researchers %}
+                        {% if forloop.counter0|divisibleby:3 %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="row">
+                        {% endif %}
+                                    <div class="col-md-4">
+                                        <div class="researcher-card">
+                                            <img class="rounded-circle" src="{{ researcher.image.url }}" alt="{{ researcher.name }}" width="180px" height="180px">
+                                            <h4 class="mt-3 mb-2">{{ researcher.name }}</h4>
+                                            <p class="text-muted mb-0">{{ researcher.specialization }}</p>
+                                        </div>
+                                    </div>
+                        {% if forloop.counter|divisibleby:3 or forloop.last %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+      
+      <!--news and events-->
+      <!-- news_and_events.html -->
+      <div class="section news-events py-5 bg-light" id="news-events">
+        <div class="container">
+            <h3 class="section-title text-center text-success mb-2">News and Events</h3>
+            <p class="section-description text-center text-muted mb-5">
+                Stay updated with the latest news and events happening at <strong>Jomo Kenyatta University of Agriculture and Technology</strong>. Join us for our upcoming seminars, workshops, and cultural events.
+            </p>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="list-group">
+                        {% for item in news_items %}
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-3 shadow-sm">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1 text-info">{{ item.title }}</h6>
+                                <small class="text-muted">{{ item.date_time|date:"F d, Y H:i" }}</small>
+                            </div>
+                            <p class="mb-1">{{ item.description }}</p>
+                        </a>
+                        {% endfor %}
+    
+                        {% if event_items %}
+                            {% for item in event_items %}
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-3 shadow-sm">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1 text-info" >{{ item.title }}</h6>
+                                    <small class="text-muted">{{ item.date_time|date:"F d, Y H:i" }}</small>
+                                </div>
+                                <p class="mb-1">{{ item.description }}</p>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="alert alert-warning" role="alert">
+                                No upcoming events at the moment.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      <!-- Benefits Section -->
+      <div id="services" class="section benefits font-weight-bold py-5 bg-success">
+        <div class="container">
+            <h3 class="font-weight-bold section-title text-center text-dark mb-4">KEY BENEFITS OF OUR REPOSITORY</h3>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="icon mb-3">
+                                <i class="fas fa-users fa-3x text-primary"></i>
+                            </div>
+                            <h5 class="card-title text-dark">Collaboration</h5>
+                            <p class="card-text text-muted">Promoting collaboration among researchers and students, fostering interdisciplinary research efforts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="icon mb-3">
+                                <i class="fas fa-lightbulb fa-3x text-warning"></i>
+                            </div>
+                            <h5 class="card-title text-dark">Innovation</h5>
+                            <p class="card-text text-muted">Encouraging innovation by providing a platform to build upon existing research projects and ideas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 text-center shadow-sm border-0">
+                        <div class="card-body">
+                            <div class="icon mb-3">
+                                <i class="fas fa-book fa-3x text-success"></i>
+                            </div>
+                            <h5 class="card-title text-dark">Learning</h5>
+                            <p class="card-text text-muted">Serving as a learning resource for students, showcasing examples of successful research projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+      
+  
+    <!--how it works-->
+    <section id="how-it-works" class="py-2 bg-light mb-3" style="background-image: url('{% static "assets\img\about-bg.jpg" %}'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 60px 0; color: #fff; opacity: 2;">
+      <div class="container text-center">
+        <h2 class="font-weight-bold mb-5 mt-2 text-light">HOW IT WORKS</h2>
+        <div class="row">
+          <!-- Step 1 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-user-plus fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Create an Account</h5>
+                <p class="card-text text-muted">Register with CRPR by creating your personal account.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-search fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Browse Projects</h5>
+                <p class="card-text text-muted">Explore a curated list of ongoing computing research projects.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-file-alt fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">View Project Details</h5>
+                <p class="card-text text-muted">Click on a project to view detailed information.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-hands-helping fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Contribute or Collaborate</h5>
+                <p class="card-text text-muted">Provide feedback or collaborate on existing projects.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 5 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-lightbulb fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Create Your Own Project</h5>
+                <p class="card-text text-muted">Initiate a new research project within your area of interest.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 6 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-bell fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Stay Updated</h5>
+                <p class="card-text text-muted">Receive updates on project progress, news, and events.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 7 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-network-wired fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Connect and Network</h5>
+                <p class="card-text text-muted">Expand your professional network with researchers and peers.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 8 -->
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow">
+              <div class="card-body">
+                <div class="step-icon mb-3 text-primary">
+                  <i class="fas fa-book fa-3x"></i>
+                </div>
+                <h5 class="card-title text-dark font-weight-bold">Access Resources</h5>
+                <p class="card-text text-muted">Explore educational materials and publications.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+  
+    <!-- Call to Action Section -->
+    <section class=" bg-light text-center" id="cta">
+      <div class="container">
+          <h2 class="font-weight-bold mb-2 text-primary">Join Our Research Community</h2>
+          <p class="lead mb-2 text-secondary">Stay updated with the latest research projects, news, and events.</p>
+          <div>
+              <a href="{% url 'sign_in' %}" class="btn btn-warning rounded-pill shadow-sm mr-2 mb-3">Sign Up</a>
+              <a href="mailto:gikurujoseph53@gmail.com" class="btn btn-success rounded-pill shadow-sm mb-3">Contact Us</a>
+          </div>
+      </div>
+  </section>
+  
+
+<script src="{% static "js/main.js" %}"></script>
+  
+{% endblock  %}

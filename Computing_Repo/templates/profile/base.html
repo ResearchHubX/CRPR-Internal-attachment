@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block content %}
+<div class="container bg-light mt-4 pt-3 pb-3 shadow border-2 border-dark">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="text-center">
+                <img src="{% if request.user.profile.avatar %}{{ request.user.profile.avatar.url }}{% else %}{% static 'images/avatar.png' %}{% endif %}" alt="" class="rounded-circle mb-2" width="100" height="100">
+                <h4>{{ request.user.get_full_name }}</h4>
+                <p class="text-secondary">{{ request.user.email }}</p>
+            </div>
+            <div class="list-group mt-5">
+                <a href="{% url 'create_project' %}" class="list-group-item list-group-item-action {% if request.path == '/create_project/' %}active{% endif %}">Create a Project</a>
+                <a href="{% url 'myProject_page_status' 'active' %}" class="list-group-item list-group-item-action {% if request.path == '/myProject/' %}active{% endif %}">My Projects</a>
+                <a href="{% url 'profile_page' %}" class="list-group-item list-group-item-action {% if request.path == '/profile/' %}active{% endif %}">Profile Information</a>
+                <a href="{% url 'subscription_status' %}" class="list-group-item list-group-item-action {% if request.path == '/subscription_status/' %}active{% endif %}">Subscription Status</a>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-12">
+            {% if messages %}
+            <div class="container">
+                {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% block main %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
